@@ -1,0 +1,40 @@
+version: '3.4'
+
+services:
+
+  it-will-always-be-healthy:
+    container_name: it-will-always-be-healthy
+    image: ${DOCKER_REGISTRY-}healthchecktest
+    build:
+      context: .
+      dockerfile: HealthcheckTest/Dockerfile
+
+  it-will-always-be-unhealthy:
+    container_name: it-will-always-be-unhealthy
+    image: ${DOCKER_REGISTRY-}healthchecktest
+    build:
+      context: .
+      dockerfile: HealthcheckTest/Dockerfile
+
+  it-will-get-unhealthy-in-a-few-minutes:
+    container_name: it-will-get-unhealthy-in-a-few-minutes
+    image: ${DOCKER_REGISTRY-}healthchecktest
+    build:
+      context: .
+      dockerfile: HealthcheckTest/Dockerfile
+
+  it-will-throw-exception-in-a-few-minutes:
+    container_name: it-will-throw-exception-in-a-few-minutes
+    image: ${DOCKER_REGISTRY-}healthchecktest
+    build:
+      context: .
+      dockerfile: HealthcheckTest/Dockerfile
+
+  autoheal:
+    container_name: autoheal
+    image: willfarrell/autoheal
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - AUTOHEAL_CONTAINER_LABEL=all
+    restart: unless-stopped

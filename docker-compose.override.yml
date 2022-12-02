@@ -1,0 +1,51 @@
+version: '3.4'
+
+services:
+
+  it-will-always-be-healthy:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=ItWillAlwaysBeHealthy
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "80"
+      - "443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    restart: unless-stopped
+
+  it-will-always-be-unhealthy:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=ItWillAlwaysBeUnhealthy
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "80"
+      - "443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    restart: unless-stopped
+
+  it-will-get-unhealthy-in-a-few-minutes:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=ItWillGetUnhealthyInAFewMinutes
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "80"
+      - "443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    restart: unless-stopped
+
+  it-will-throw-exception-in-a-few-minutes:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=ItWillThrowExceptionInAFewMinutes
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "80"
+      - "443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    restart: unless-stopped
