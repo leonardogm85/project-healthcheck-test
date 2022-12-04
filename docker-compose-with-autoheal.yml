@@ -1,0 +1,52 @@
+version: '3.4'
+
+services:
+
+  it-will-always-be-healthy:
+    container_name: it-will-always-be-healthy
+    image: leonardogm85/healthcheck-test:latest
+    environment:
+      - ASPNETCORE_ENVIRONMENT=ItWillAlwaysBeHealthy
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "80"
+    restart: unless-stopped
+
+  it-will-always-be-unhealthy:
+    container_name: it-will-always-be-unhealthy
+    image: leonardogm85/healthcheck-test:latest
+    environment:
+      - ASPNETCORE_ENVIRONMENT=ItWillAlwaysBeUnhealthy
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "80"
+    restart: unless-stopped
+
+  it-will-get-unhealthy-in-a-few-minutes:
+    container_name: it-will-get-unhealthy-in-a-few-minutes
+    image: leonardogm85/healthcheck-test:latest
+    environment:
+      - ASPNETCORE_ENVIRONMENT=ItWillGetUnhealthyInAFewMinutes
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "80"
+    restart: unless-stopped
+
+  it-will-throw-exception-in-a-few-minutes:
+    container_name: it-will-throw-exception-in-a-few-minutes
+    image: leonardogm85/healthcheck-test:latest
+    environment:
+      - ASPNETCORE_ENVIRONMENT=ItWillThrowExceptionInAFewMinutes
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "80"
+    restart: unless-stopped
+
+  autoheal:
+    container_name: autoheal
+    image: willfarrell/autoheal:latest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - AUTOHEAL_CONTAINER_LABEL=all
+    restart: unless-stopped

@@ -1,0 +1,43 @@
+version: '3.4'
+
+services:
+
+  it-will-always-be-healthy:
+    image: leonardogm85/healthcheck-test:latest
+    environment:
+      - ASPNETCORE_ENVIRONMENT=ItWillAlwaysBeHealthy
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "80"
+    deploy:
+      replicas: 2
+
+  it-will-always-be-unhealthy:
+    image: leonardogm85/healthcheck-test:latest
+    environment:
+      - ASPNETCORE_ENVIRONMENT=ItWillAlwaysBeUnhealthy
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "80"
+    deploy:
+      replicas: 2
+
+  it-will-get-unhealthy-in-a-few-minutes:
+    image: leonardogm85/healthcheck-test:latest
+    environment:
+      - ASPNETCORE_ENVIRONMENT=ItWillGetUnhealthyInAFewMinutes
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "80"
+    deploy:
+      replicas: 2
+
+  it-will-throw-exception-in-a-few-minutes:
+    image: leonardogm85/healthcheck-test:latest
+    environment:
+      - ASPNETCORE_ENVIRONMENT=ItWillThrowExceptionInAFewMinutes
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "80"
+    deploy:
+      replicas: 2
