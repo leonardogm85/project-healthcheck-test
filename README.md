@@ -56,10 +56,8 @@ vagrant halt
 
 ## Reference:
 
-Monitor and restart unhealthy docker containers [GitHub Autoheal](https://github.com/willfarrell/docker-autoheal/)
-
-Monitor and restart unhealthy docker containers [DockerHub Autoheal](https://hub.docker.com/r/willfarrell/autoheal/)
+Monitor and restart unhealthy docker containers [GitHub Autoheal](https://github.com/willfarrell/docker-autoheal/) and [DockerHub Autoheal](https://hub.docker.com/r/willfarrell/autoheal/)
 
 Guides, terms and commands Docker [Docker Docs](https://docs.docker.com/)
 
-Guides, terms and commands Docker [Vagrant Docs](https://developer.hashicorp.com/vagrant/docs/)
+Guides, terms and commands Vagrant [Vagrant Docs](https://developer.hashicorp.com/vagrant/docs/)
